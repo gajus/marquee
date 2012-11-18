@@ -1,4 +1,4 @@
-# Simple, light and reusable carousel library
+# Infinite circus library
 
 [ay-carousel plugin](https://github.com/gajus/infinite-circus/) is a simple, reusable infinite circus library.
 
