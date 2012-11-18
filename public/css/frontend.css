@@ -1,0 +1,31 @@
+html,
+body {
+  margin: 0;
+  font: 12px/20px monospace;
+}
+#circus {
+  width: 200px;
+  height: 50px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+}
+#circus .child {
+  width: 50px;
+  height: 50px;
+  float: left;
+  text-align: center;
+  line-height: 50px;
+}
+#circus .child.red {
+  background: #f00;
+}
+#circus .child.green {
+  background: #0f0;
+}
+#circus .child.blue {
+  background: #00f;
+}
+body {
+  padding: 20px;
+}
