@@ -1,5 +1,5 @@
 /**
- * jQuery circus v0.0.1 (2012 NOV 18)
+ * jQuery circus v0.0.3 (2012 NOV 18)
  * https://github.com/gajus/infinite-circus
  *
  * Licensed under the BSD.
@@ -18,6 +18,22 @@
 		
 		settings.direction	= settings.direction === 'left' ? 'left' : 'right';
 		
+		var transition_support =
+			'WebkitTransition' in document.body.style ||
+            'MozTransition' in document.body.style ||
+            'msTransition' in document.body.style ||
+            'OTransition' in document.body.style ||
+            'Transition' in document.body.style;
+		
+		var prepare_unique_style = function(child_width){
+			var unique_transition_name = 'ay-transition-' + Math.random().toString(36).substr(2, 5),
+				transition = 'margin-left ' + settings.speed + 'ms linear';
+			
+			$('<style>.' + unique_transition_name + ' { -webkit-transition: ' + transition + '; -moz-transition: ' + transition + '; -ms-transition: ' + transition + '; -o-transition: ' + transition + '; transition: ' + transition + '; margin-left: -' + child_width + 'px!important; }</style>').appendTo('head');
+			
+			return unique_transition_name;
+		};
+		
 		this.each(function(){
 			var container = $(this),
 				wrapper = container.children().eq(0),
@@ -30,19 +46,44 @@
 			
 			var child_number = 0;
 			
-			var animate = function(){
-				var child = children.eq(child_number);
+			if(transition_support)
+			{
+				var unique_transition_name = prepare_unique_style(child_width);
 				
-				child_number = children.length > child_number+1 ? child_number+1 : 0;
+				//unique_transition_name
+				var child;
 				
-				child.animate({marginLeft: -child_width}, {duration: settings.speed, easing: 'linear', complete: function(){
-					child.appendTo(wrapper).css({marginLeft: 0});
+				var animate = function animate(){
+					if(child)
+					{
+						child.appendTo(wrapper).removeClass(unique_transition_name);
+					}
 					
-					animate();
-				}});
-			};
-			
-			animate();
+					child 	= children.eq(child_number);
+					
+					child.addClass(unique_transition_name);
+					
+					child_number = children.length > child_number+1 ? child_number+1 : 0;
+				
+					setTimeout(animate, settings.speed)
+				}();
+			}
+			else
+			{
+				var animate = function(){
+					var child = children.eq(child_number);
+					
+					child_number = children.length > child_number+1 ? child_number+1 : 0;
+					
+					child.animate({marginLeft: -child_width}, {duration: settings.speed, easing: 'linear', complete: function(){
+						child.appendTo(wrapper).css({marginLeft: 0});
+						
+						animate();
+					}});
+				};
+				
+				animate();
+			}			
 		});
 	};
 })();

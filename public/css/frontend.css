@@ -32,6 +32,11 @@ body {
 #circus li.blue {
   background: #00f;
 }
+#circus li.ay-transition {
+  -webkit-transition: margin-left 2000ms linear;
+  margin-left: 50px;
+  background: #000;
+}
 body {
   padding: 20px;
 }
