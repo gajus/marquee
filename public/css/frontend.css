@@ -3,19 +3,19 @@ body {
   margin: 0;
   font: 12px/20px monospace;
 }
-#circus {
+.circus {
   width: 200px;
   height: 50px;
   margin-bottom: 20px;
   overflow: hidden;
   position: relative;
 }
-#circus ul,
-#circus li {
+.circus ul,
+.circus li {
   margin: 0;
   padding: 0;
 }
-#circus li {
+.circus li {
   width: 50px;
   height: 50px;
   float: left;
@@ -23,19 +23,34 @@ body {
   line-height: 50px;
   list-style: none;
 }
-#circus li.red {
+.circus li.red {
   background: #f00;
 }
-#circus li.green {
+.circus li.green {
   background: #0f0;
 }
-#circus li.blue {
+.circus li.blue {
   background: #00f;
 }
-#circus li.ay-transition {
+.circus li.ay-transition {
   -webkit-transition: margin-left 2000ms linear;
   margin-left: 50px;
   background: #000;
+}
+.circus .wrapper {
+  position: absolute;
+  top: 0;
+}
+.circus.left .wrapper {
+  position: absolute;
+  left: 0;
+}
+.circus.right .wrapper {
+  position: absolute;
+  right: 0;
+}
+.circus.right ul li {
+  float: right;
 }
 body {
   padding: 20px;

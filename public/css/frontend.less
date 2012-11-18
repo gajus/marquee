@@ -1,6 +1,6 @@
 html, body { margin: 0; font: 12px/20px monospace; }
 
-#circus
+.circus
 {
 	width: 200px; height: 50px; margin-bottom: 20px; overflow: hidden; position: relative;
 	
@@ -17,6 +17,12 @@ html, body { margin: 0; font: 12px/20px monospace; }
 		
 		&.ay-transition { -webkit-transition: margin-left 2000ms linear; margin-left: 50px; background: #000; }
 	}
+	
+	.wrapper { position: absolute; top: 0; }
+	
+	&.left .wrapper { position: absolute; left: 0; }
+	&.right .wrapper { position: absolute; right: 0; }
+	&.right ul li { float: right; }
 }
 
 body { padding: 20px; }

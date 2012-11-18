@@ -27,9 +27,9 @@
 		
 		var prepare_unique_style = function(child_width){
 			var unique_transition_name = 'ay-transition-' + Math.random().toString(36).substr(2, 5),
-				transition = 'margin-left ' + settings.speed + 'ms linear';
+				transition = 'margin-' + settings.direction + ' ' + settings.speed + 'ms linear';
 			
-			$('<style>.' + unique_transition_name + ' { -webkit-transition: ' + transition + '; -moz-transition: ' + transition + '; -ms-transition: ' + transition + '; -o-transition: ' + transition + '; transition: ' + transition + '; margin-left: -' + child_width + 'px!important; }</style>').appendTo('head');
+			$('<style>.' + unique_transition_name + ' { -webkit-transition: ' + transition + '; -moz-transition: ' + transition + '; -ms-transition: ' + transition + '; -o-transition: ' + transition + '; transition: ' + transition + '; margin-' + settings.direction + ': -' + child_width + 'px!important; }</style>').appendTo('head');
 			
 			return unique_transition_name;
 		};
@@ -64,19 +64,27 @@
 					child.addClass(unique_transition_name);
 					
 					child_number = children.length > child_number+1 ? child_number+1 : 0;
-				
+					
 					setTimeout(animate, settings.speed)
 				}();
 			}
 			else
 			{
+				var margin_rule = function(margin){
+					var obj = {};
+				
+					obj['margin-' + settings.direction] = margin;
+				
+					return obj;
+				};
+			
 				var animate = function(){
 					var child = children.eq(child_number);
 					
 					child_number = children.length > child_number+1 ? child_number+1 : 0;
 					
-					child.animate({marginLeft: -child_width}, {duration: settings.speed, easing: 'linear', complete: function(){
-						child.appendTo(wrapper).css({marginLeft: 0});
+					child.animate(margin_rule(-child_width), {duration: settings.speed, easing: 'linear', complete: function(){
+						child.appendTo(wrapper).css(margin_rule(0));
 						
 						animate();
 					}});
