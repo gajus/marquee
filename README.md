@@ -1,10 +1,10 @@
 # Simple, light and reusable carousel library
 
-[ay-carousel plugin](https://github.com/gajus/carousel/) is a simple, reusable carousel library.
+[ay-carousel plugin](https://github.com/gajus/infinite-circus/) is a simple, reusable infinite circus library.
 
 ## Demo
 
-The [demo](https://dev.anuary.com/e12e6e59-daac-5c27-ade3-b0a1ecfde542/) will give an idea of the required styling and DOM structure.
+The [demo](https://dev.anuary.com/60244f3a-b8b2-5678-bce5-f7e8742f0c69/) will give an idea of the required styling and DOM structure.
 
 ## License & Notes
 
