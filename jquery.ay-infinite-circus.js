@@ -1,14 +1,14 @@
 /**
  * jQuery circus v0.0.1 (2012 NOV 18)
- * https://github.com/gajus/ay-circus
+ * https://github.com/gajus/infinite-circus
  *
  * Licensed under the BSD.
- * https://github.com/gajus/ay-circus/blob/master/LICENSE
+ * https://github.com/gajus/infinite-circus/blob/master/LICENSE
  *
  * Author: Gajus Kuizinas <g.kuizinas@anuary.com>
  */
 (function(){
-	$.fn.ayCircus = function(options){
+	$.fn.ayInfiniteCircus = function(options){
 		var settings	= $.extend({
 			direction: 'left',
 			speed: 800
