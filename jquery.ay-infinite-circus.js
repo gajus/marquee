@@ -8,6 +8,8 @@
  * Author: Gajus Kuizinas <g.kuizinas@anuary.com>
  */
 (function(){
+	'use strict';
+
 	$.fn.ayInfiniteCircus = function(options){
 		var settings	= $.extend({
 			direction: 'left',
@@ -17,39 +19,30 @@
 		settings.direction	= settings.direction === 'left' ? 'left' : 'right';
 		
 		this.each(function(){
-			var container		= $(this),
-				children		= container.children(),
-				wrapper_width	= 0;
+			var container = $(this),
+				wrapper = container.children().eq(0),
+				children = wrapper.children(),
+				// assume that all children have identical width
+				child_width = children.eq(0).outerWidth(true),
+				calculated_wrapper_width = children.length*child_width;
 			
+			wrapper.width(calculated_wrapper_width);
 			
-			for(var l = 0, k = children.length; l < k; l++)
-			{
-				wrapper_width	+= children.outerWidth(true);
-			}
+			var child_number = 0;
 			
-			container.wrapInner('<div class="wrapper"></div>');
-			
-			var wrapper	= container.find('> .wrapper');
-			
-			wrapper.css({overflow: 'hidden', position: 'absolute', height: container.outerHeight(), width: wrapper_width}).css(settings.direction, 0);
-			
-			var move_element	= function(){
-			
-				var element = wrapper.children().eq(settings.direction === 'left' ? 0 : -1);
+			var animate = function(){
+				var child = children.eq(child_number);
 				
-				var animation	= {};
+				child_number = children.length > child_number+1 ? child_number+1 : 0;
 				
-				animation[settings.direction] = -element.width();
-				
-				wrapper.animate(animation, {duration: settings.speed, easing: 'linear', complete: function(){
-					wrapper.css(settings.direction, 0)[settings.direction === 'left' ? 'append' : 'prepend'](element);
+				child.animate({marginLeft: -child_width}, {duration: settings.speed, easing: 'linear', complete: function(){
+					child.appendTo(wrapper).css({marginLeft: 0});
 					
-					move_element();
+					animate();
 				}});
-				
 			};
 			
-			move_element();
+			animate();
 		});
 	};
 })();
