@@ -1,6 +1,6 @@
-# Infinite circus library
+# Marquee
 
-[infinite-circus plugin](https://github.com/gajus/infinite-circus/) is a simple, reusable infinite circus library.
+[Marquee plugin](https://github.com/gajus/marquee).
 
 ## Demo
 

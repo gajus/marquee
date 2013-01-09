@@ -1,16 +1,16 @@
 /**
- * jQuery circus v0.0.3 (2012 NOV 18)
- * https://github.com/gajus/infinite-circus
+ * jQuery circus v0.0.3 (2013 JAN 09)
+ * https://github.com/gajus/marquee
  *
  * Licensed under the BSD.
- * https://github.com/gajus/infinite-circus/blob/master/LICENSE
+ * https://github.com/gajus/marquee/blob/master/LICENSE
  *
  * Author: Gajus Kuizinas <g.kuizinas@anuary.com>
  */
 (function(){
 	'use strict';
 
-	$.fn.ayInfiniteCircus = function(options){
+	$.fn.ayMarquee = function(options){
 		var settings	= $.extend({
 			direction: 'left',
 			speed: 800
