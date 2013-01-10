@@ -3,8 +3,6 @@
 <head>
 	<meta charset="utf-8">
 	
-	<link rel="stylesheet" type="text/css" href="public/css/frontend.css">
-	
 	<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="jquery.ay-marquee.js"></script>
 	<script type="text/javascript">
@@ -16,6 +14,27 @@
 		$.ay.marquee({target: $('#css2 .circus.right'), direction: 'right', speed: 1000, implementation: 'css2'});
 	});
 	</script>
+	
+	<style>
+	html, body { margin: 0; font: 12px/20px monospace; }
+	body { padding: 20px; }
+	
+	.circus { width: 200px; height: 50px; margin-bottom: 20px; overflow: hidden; position: relative; }
+	
+	ul, li { margin: 0; padding: 0; }
+	
+	li { width: 50px; height: 50px; float: left; text-align: center; line-height: 50px; list-style: none; }
+	li.red { background: #f00; }
+	li.green { background: #0f0; width: 100px; }
+	li.blue { background: #00f; width: 150px; }
+	
+	.wrapper { position: absolute; top: 0; }
+	
+	.circus.left .wrapper { left: 0; }
+	
+	.circus.ay-css3.right .wrapper { right: 0; }
+	.circus.ay-css3.right ul li { float: right; }
+	</style>
 </head>
 <body>
 	<div id="css3">
