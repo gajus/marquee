@@ -97,7 +97,7 @@ $(function(){ // This plugin relies on DOM ready state. Do not move it to IIFE.
 			(function () {
 				// @todo merge the left/right implementations
 				if (settings.direction === 'left') {
-					(function animate() {
+					(function animateLeft() {
 						var child = children.eq(childNumber),
 							transition = childrenTransitions[childNumber];
 						
@@ -105,13 +105,13 @@ $(function(){ // This plugin relies on DOM ready state. Do not move it to IIFE.
 						
 						container.animate({scrollLeft: transition.elementWidth}, {duration: transition.duration, easing: 'linear', complete: function () {
 							child.appendTo(wrapper);
-							container.scrollLeft(0);
+							container[0].scrollLeft = 0;
 							
-							animate();
+							animateLeft();
 						}});
 					}());
 				} else {
-					(function animate() {
+					(function animateRight() {
 						var child = children.eq(children.length-1-childNumber),
 							transition = childrenTransitions[children.length-1-childNumber];
 						
@@ -123,7 +123,7 @@ $(function(){ // This plugin relies on DOM ready state. Do not move it to IIFE.
 							child.prependTo(wrapper);
 							container.scrollLeft(wrapperContentWidth-containerWidth);
 							
-							animate();
+							animateRight();
 						}});
 					}());
 				}
