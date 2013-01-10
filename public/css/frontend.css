@@ -9,6 +9,9 @@ body {
   margin-bottom: 20px;
   overflow: hidden;
   position: relative;
+  /*&.right .wrapper { right: 0; }
+	&.right .wrapper li { float: left; }*/
+
 }
 .circus ul,
 .circus li {
@@ -38,16 +41,17 @@ body {
   position: absolute;
   top: 0;
 }
-.circus.left .wrapper {
-  position: absolute;
+.circus.ay-css3.left .wrapper {
   left: 0;
 }
-.circus.right .wrapper {
-  position: absolute;
+.circus.ay-css3.right .wrapper {
   right: 0;
 }
-.circus.right ul li {
+.circus.ay-css3.right ul li {
   float: right;
+}
+.circus.ay-css3.right {
+  overflow: hidden;
 }
 body {
   padding: 20px;

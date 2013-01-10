@@ -9,30 +9,93 @@
 	<script type="text/javascript" src="jquery.ay-marquee.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		$.ay.marquee({target: $('.circus.left'), direction: 'left', speed: 1000});
+		$.ay.marquee({target: $('#css3 .circus.left'), direction: 'left', speed: 1000});
+		$.ay.marquee({target: $('#css3 .circus.right'), direction: 'right', speed: 1000});
+		
+		$.ay.marquee({target: $('#css2 .circus.left'), direction: 'left', speed: 1000, implementation: 'css2'});
+		$.ay.marquee({target: $('#css2 .circus.right'), direction: 'right', speed: 1000, implementation: 'css2'});
 	});
 	</script>
 </head>
 <body>
-	<div class="circus left">		
-		<ul class="wrapper">
-			<li class="red">1</li>
-			<li class="green">2</li>
-			<li class="blue">3</li>
-			<li class="red">4</li>
-			<li class="green">5</li>
-			<li class="blue">6</li>
-			<li class="red">7</li>
-			<li class="green">8</li>
-			<li class="blue">9</li>
-			<li class="red">10</li>
-			<li class="green">11</li>
-			<li class="blue">12</li>
-		</ul>
+	<div id="css3">
+		<h1>CSS3 (if not available, then defaults to CSS2)</h1>
+	
+		<div class="circus left">		
+			<ul class="wrapper">
+				<li class="red">1</li>
+				<li class="green">2</li>
+				<li class="blue">3</li>
+				<li class="red">4</li>
+				<li class="green">5</li>
+				<li class="blue">6</li>
+				<li class="red">7</li>
+				<li class="green">8</li>
+				<li class="blue">9</li>
+				<li class="red">10</li>
+				<li class="green">11</li>
+				<li class="blue">12</li>
+			</ul>
+		</div>
+		
+		<div class="circus right">		
+			<ul class="wrapper">
+				<li class="red">1</li>
+				<li class="green">2</li>
+				<li class="blue">3</li>
+				<li class="red">4</li>
+				<li class="green">5</li>
+				<li class="blue">6</li>
+				<li class="red">7</li>
+				<li class="green">8</li>
+				<li class="blue">9</li>
+				<li class="red">10</li>
+				<li class="green">11</li>
+				<li class="blue">12</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div id="css2">
+		<h1>CSS2</h1>
+	
+		<div class="circus left">		
+			<ul class="wrapper">
+				<li class="red">1</li>
+				<li class="green">2</li>
+				<li class="blue">3</li>
+				<li class="red">4</li>
+				<li class="green">5</li>
+				<li class="blue">6</li>
+				<li class="red">7</li>
+				<li class="green">8</li>
+				<li class="blue">9</li>
+				<li class="red">10</li>
+				<li class="green">11</li>
+				<li class="blue">12</li>
+			</ul>
+		</div>
+		
+		<div class="circus right">		
+			<ul class="wrapper">
+				<li class="red">1</li>
+				<li class="green">2</li>
+				<li class="blue">3</li>
+				<li class="red">4</li>
+				<li class="green">5</li>
+				<li class="blue">6</li>
+				<li class="red">7</li>
+				<li class="green">8</li>
+				<li class="blue">9</li>
+				<li class="red">10</li>
+				<li class="green">11</li>
+				<li class="blue">12</li>
+			</ul>
+		</div>
 	</div>
 	
 	<div class="authorship">
-		This is a demo of the <a href="https://github.com/gajus/marquee" target="_blank">simple, light and reusable infinite circus library</a>.
+		This is a demo of the <a href="https://github.com/gajus/marquee" target="_blank">simple, light and reusable marquee library</a>.
 	</div>
 </body>
 </html>

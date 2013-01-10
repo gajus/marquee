@@ -18,9 +18,16 @@ html, body { margin: 0; font: 12px/20px monospace; }
 	
 	.wrapper { position: absolute; top: 0; }
 	
-	&.left .wrapper { position: absolute; left: 0; }
-	&.right .wrapper { position: absolute; right: 0; }
-	&.right ul li { float: right; }
+	/*&.right .wrapper { right: 0; }
+	&.right .wrapper li { float: left; }*/
+	
+	&.ay-css3 {
+		&.left .wrapper { left: 0; }
+	
+		&.right .wrapper { right: 0; }
+		&.right ul li { float: right; }
+		&.right { overflow: hidden; }
+	}
 }
 
 body { padding: 20px; }
