@@ -9,29 +9,12 @@
 	<script type="text/javascript" src="jquery.ay-marquee.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		$('.circus.left').ayMarquee({direction: 'left', speed: 800});
-		$('.circus.right').ayMarquee({direction: 'right', speed: 800});
+		$.ay.marquee({target: $('.circus.left'), direction: 'left', speed: 1000});
 	});
 	</script>
 </head>
 <body>
 	<div class="circus left">		
-		<ul class="wrapper">
-			<li class="red">1</li>
-			<li class="green">2</li>
-			<li class="blue">3</li>
-			<li class="red">4</li>
-			<li class="green">5</li>
-			<li class="blue">6</li>
-			<li class="red">7</li>
-			<li class="green">8</li>
-			<li class="blue">9</li>
-			<li class="red">10</li>
-			<li class="green">11</li>
-			<li class="blue">12</li>
-		</ul>
-	</div>
-	<div class="circus right">		
 		<ul class="wrapper">
 			<li class="red">1</li>
 			<li class="green">2</li>
