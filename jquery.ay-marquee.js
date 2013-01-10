@@ -9,67 +9,71 @@
  */
 (function(){
 	'use strict';
+	
+	var nativeTransition;
 
-	$.fn.ayMarquee = function(options){
-		var settings	= $.extend({
+	$.fn.ayMarquee = function (options) {
+		var settings = $.extend({
 			direction: 'left',
 			speed: 800
 		}, options);
 		
+		if (nativeTransition === undefined) {
+			nativeTransition =
+				'WebkitTransition' in document.body.style ? '-webkit-transition' : false ||
+		        'MozTransition' in document.body.style ? '-moz-transition' : false ||
+		        'msTransition' in document.body.style ? '-ms-transition' : false ||
+		        'OTransition' in document.body.style ? '-o-transition' : false ||
+		        'Transition' in document.body.style ? 'transition' : false ;
+		}
+		
 		settings.direction	= settings.direction === 'left' ? 'left' : 'right';
-		
-		var transition_support =
-			'WebkitTransition' in document.body.style ||
-            'MozTransition' in document.body.style ||
-            'msTransition' in document.body.style ||
-            'OTransition' in document.body.style ||
-            'Transition' in document.body.style;
-		
-		var prepare_unique_style = function(child_width){
-			var unique_transition_name = 'ay-transition-' + Math.random().toString(36).substr(2, 5),
-				transition = 'margin-' + settings.direction + ' ' + settings.speed + 'ms linear';
+        
+        var uniqueStyle = (function () {
+			var unique = {}; // @todo
 			
-			$('<style>.' + unique_transition_name + ' { -webkit-transition: ' + transition + '; -moz-transition: ' + transition + '; -ms-transition: ' + transition + '; -o-transition: ' + transition + '; transition: ' + transition + '; margin-' + settings.direction + ': -' + child_width + 'px!important; }</style>').appendTo('head');
-			
-			return unique_transition_name;
-		};
+			return function (childWidth) {
+				var className = 'ay-transition-' + Math.random().toString(36).substr(2, 5);
+				
+				$('<style>.' + className + ' { ' + nativeTransition + ': margin-' + settings.direction + ' ' + settings.speed + 'ms linear; margin-' + settings.direction + ': -' + childWidth + 'px!important; }</style>').appendTo('head');
+				
+				return className;
+			};
+		}());
 		
 		this.each(function(){
 			var container = $(this),
 				wrapper = container.children().eq(0),
 				children = wrapper.children(),
 				// assume that all children have identical width
-				child_width = children.eq(0).outerWidth(true),
-				calculated_wrapper_width = children.length*child_width;
+				childWidth = children.eq(0).outerWidth(true),
+				calculatedWrapperWidth = children.length*childWidth;
 			
-			wrapper.width(calculated_wrapper_width);
+			wrapper.width(calculatedWrapperWidth);
 			
-			var child_number = 0;
+			var childNumber = 0;
 			
-			if(transition_support)
-			{
-				var unique_transition_name = prepare_unique_style(child_width);
+			if (nativeTransition) {
+				var uniqueTransitionName = uniqueStyle(childWidth);
 				
-				//unique_transition_name
+				//uniqueTransitionName
 				var child;
 				
 				var animate = function animate(){
 					if(child)
 					{
-						child.appendTo(wrapper).removeClass(unique_transition_name);
+						child.appendTo(wrapper).removeClass(uniqueTransitionName);
 					}
 					
-					child 	= children.eq(child_number);
+					child 	= children.eq(childNumber);
 					
-					child.addClass(unique_transition_name);
+					child.addClass(uniqueTransitionName);
 					
-					child_number = children.length > child_number+1 ? child_number+1 : 0;
+					childNumber = children.length > childNumber+1 ? childNumber+1 : 0;
 					
 					setTimeout(animate, settings.speed)
 				}();
-			}
-			else
-			{
+			} else {
 				var margin_rule = function(margin){
 					var obj = {};
 				
@@ -79,11 +83,11 @@
 				};
 			
 				var animate = function(){
-					var child = children.eq(child_number);
+					var child = children.eq(childNumber);
 					
-					child_number = children.length > child_number+1 ? child_number+1 : 0;
+					childNumber = children.length > childNumber+1 ? childNumber+1 : 0;
 					
-					child.animate(margin_rule(-child_width), {duration: settings.speed, easing: 'linear', complete: function(){
+					child.animate(margin_rule(-childWidth), {duration: settings.speed, easing: 'linear', complete: function(){
 						child.appendTo(wrapper).css(margin_rule(0));
 						
 						animate();
